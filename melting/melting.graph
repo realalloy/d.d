@@ -1,0 +1,14 @@
+
+
+main -> decode.c : decode_input -> read_nn
+                                -> usage
+                                -> read_string
+                                -> decode_input
+                                -> legal
+     -> decode.c : read_nn
+     -> check_sequence
+     -> decode.c : read_string
+     -> make_complement
+     -> calcul.c : get_results -> tm_approx
+                               -> tm_exact
+ 
