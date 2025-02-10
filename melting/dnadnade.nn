@@ -1,0 +1,96 @@
+/******************************************************************************/
+/*                             dnadnade.nn                                    */
+/* contains the parameters for DNA/DNA dangling ends.                         */                 
+/******************************************************************************/
+
+/*      This program is free software; you can redistribute it and/or modify  */
+/*       it under the terms of the GNU General Public License as published by */
+/*       the Free Software Foundation; either version 2 of the License, or    */
+/*       (at your option) any later version.                                  */
+
+/*       This program is distributed in the hope that it will be useful, but  */
+/*       WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
+/*       General Public License for more details.                             */
+
+/*       You should have received a copy of the GNU General Public License    */
+/*       along with this program; if not, write to the Free Software          */
+/*       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 */
+/*       USA                                                                  */
+
+/*       Nicolas Le Novère  and Marine Dumousseau                             */
+/*       EMBL-EBI, Wellcome-Trust Genome Campus                               */
+/*       Hinxton Cambridge, CB10 1SD, UK                                      */
+/*      lenov@ebi.ac.uk                                                       */
+/*  IMPORTANT: the parameters appearing in litterature (and therefore in this */
+/*             file) are expressed in cal.mol-1, whereas the results output   */
+/*             by MELTING are in SI, i.e. in J.mol-1                          */
+
+AA/-T    200.0    2.3
+T-/AA    200.0    2.3
+AC/-G  -6300.0  -17.1
+G-/CA  -6300.0  -17.1
+AG/-C  -3700.0  -10.0
+C-/GA  -3700.0  -10.0
+AT/-A  -2900.0   -7.6
+A-/TA  -2900.0   -7.6
+CA/-T    600.0    3.3
+T-/AC    600.0    3.3
+CC/-G  -4400.0  -12.6
+G-/CC  -4400.0  -12.6
+CG/-C  -4000.0  -11.9
+C-/GC  -4000.0  -11.9
+CT/-A  -4100.0  -13.0
+A-/TC  -4100.0  -13.0
+GA/-T  -1100.0   -1.6
+T-/AG  -1100.0   -1.6
+GC/-G  -5100.0  -14.0
+G-/CG  -5100.0  -14.0
+GG/-C  -3900.0  -10.9
+C-/GG  -3900.0  -10.9
+GT/-A  -4200.0  -15.0
+A-/TG  -4200.0  -15.0
+TA/-T  -6900.0  -20.0
+T-/AT  -6900.0  -20.0
+TC/-G  -4000.0  -10.9
+G-/CT  -4000.0  -10.9
+TG/-C  -4900.0  -13.8
+C-/GT  -4900.0  -13.8
+TT/-A   -200.0   -0.5
+A-/TT   -200.0   -0.5
+-A/AT   -700.0   -0.8
+TA/A-   -700.0   -0.8
+-C/AG  -2100.0   -3.9
+GA/C-  -2100.0   -3.9
+-G/AC  -5900.0  -16.5
+CA/G-  -5900.0  -16.5
+-T/AA   -500.0   -1.1
+AA/T-   -500.0   -1.1
+-A/CT   4400.0   14.9
+TC/A-   4400.0   14.9
+-C/CG   -200.0   -0.1
+GC/C-   -200.0   -0.1
+-G/CC  -2600.0   -7.4
+CC/G-  -2600.0   -7.4
+-T/CA   4700.0   14.2
+AC/T-   4700.0   14.2
+-A/GT  -1600.0   -3.6
+TG/A-  -1600.0   -3.6
+-C/GG  -3900.0  -11.2
+GG/C-  -3900.0  -11.2
+-G/GC  -3200.0  -10.4
+CG/G-  -3200.0  -10.4
+-T/GA  -4100.0  -13.1
+AG/T-  -4100.0  -13.1
+-A/TT   2900.0   10.4
+TT/A-   2900.0   10.4
+-C/TG  -4400.0  -13.1
+GT/C-  -4400.0  -13.1
+-G/TC  -5200.0  -15.0
+CT/G-  -5200.0  -15.0
+-T/TA  -3800.0  -12.6
+AT/T-  -3800.0  -12.6
+
+REF: Bommarito et al. (2000). Nuc Acids Res 28: 1929-1934
+
+

@@ -1,0 +1,138 @@
+/******************************************************************************/
+/*                                   bre07a.nn                                */
+/* contains the parameters for inosine mismatch in DNA of Santalucia et al.   */
+/* (2005). Nucleic acids research 33 : 6258-6267 and  Brent M. Znosko et al.  */
+/* (2007). Biochemistry 46 : 4625-4634                                        */
+/******************************************************************************/
+
+/*      This program is free software; you can redistribute it and/or modify  */
+/*       it under the terms of the GNU General Public License as published by */
+/*       the Free Software Foundation; either version 2 of the License, or    */
+/*       (at your option) any later version.                                  */
+
+/*       This program is distributed in the hope that it will be useful, but  */
+/*       WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
+/*       General Public License for more details.                             */
+
+/*       You should have received a copy of the GNU General Public License    */
+/*       along with this program; if not, write to the Free Software          */
+/*       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 */
+/*       USA                                                                  */
+
+/*       Nicolas Le Nov�re  and Marine Dumousseau                             */
+/*       EMBL-EBI, Wellcome-Trust Genome Campus                               */
+/*       Hinxton Cambridge, CB10 1SD, UK                                      */
+/*      lenov@ebi.ac.uk                                                       */
+/*  IMPORTANT: the parameters appearing in litterature (and therefore in this */
+/*             file) are expressed in cal.mol-1, whereas the results output   */
+/*             by MELTING are in SI, i.e. in J.mol-1                          */
+
+AI/TT -11680.0  -36.3
+AI/TC  99999 99999
+AI/TA  99999 99999
+AI/TG  99999 99999
+AI/TI  99999 99999
+AI/IA  99999 99999
+AI/II  99999 99999
+TI/IT   8410.0   19.9
+TI/AC  99999 99999
+TI/AA  99999 99999
+TI/AG  99999 99999
+TI/AI  99999 99999
+TI/II  99999 99999
+TI/AT -10080.0  -33.8
+CI/GT -11990.0  -36.2
+CI/GC  99999 99999
+CI/GA  99999 99999
+CI/GG  99999 99999
+CI/GI  99999 99999
+CI/IC  99999 99999
+CI/II  99999 99999
+GI/CT  -9810.0  -27.4
+GI/CC  99999 99999
+GI/CA  99999 99999
+GI/CG  99999 99999
+GI/IG  99999 99999
+GI/CI  99999 99999
+GI/II  99999 99999
+IA/TT  -8220.0  -27.9
+IA/CT  99999 99999
+IA/AT  99999 99999
+IA/GT  99999 99999
+IA/AI  99999 99999
+IA/II  99999 99999
+IT/TI  17000.0   43.3
+IT/TA -15830.0  -49.4
+IT/CA  99999 99999
+IT/AA  99999 99999
+IT/GA  99999 99999
+IT/II  99999 99999
+II/TT   9530.0    8.8
+II/AA  99999 99999
+II/GG  99999 99999
+II/CC  99999 99999
+AA/II  99999 99999
+GG/II  99999 99999
+CC/II  99999 99999
+TT/II   9530.0    8.8
+II/II  99999 99999
+IG/TC -13380.0  -39.3
+IG/CC  99999 99999
+IG/AC  99999 99999
+IG/GC  99999 99999
+IG/GI  99999 99999
+IG/II  99999 99999
+IC/TG -11560.0  -34.0
+IC/CG  99999 99999
+IC/AG  99999 99999
+IC/GG  99999 99999
+IC/CI  99999 99999
+IC/II  99999 99999
+CT/IA  99999 99999
+AT/IA  99999 99999
+TT/IA  99999 99999
+GT/IA  99999 99999
+IT/IA  99999 99999
+II/IA  99999 99999
+CA/IT  99999 99999
+AA/IT  99999 99999
+TA/IT  99999 99999
+GA/IT  99999 99999
+IA/IT  99999 99999
+II/IT  99999 99999
+CG/IC  99999 99999
+AG/IC  99999 99999
+TG/IC  -11990.0  -36.2
+CI/GT  -11990.0  -36.2
+GG/IC  99999 99999
+IG/IC  99999 99999
+II/IC  99999 99999
+CC/IG  99999 99999
+AC/IG  99999 99999
+TC/IG  99999 99999
+GC/IG  99999 99999
+IC/IG  99999 99999
+II/IG  99999 99999
+TC/AI  99999 99999
+TA/AI  99999 99999
+TT/AI  99999 99999
+TG/AI  99999 99999
+II/AI  99999 99999
+AC/TI  99999 99999
+AA/TI  99999 99999
+AT/TI  99999 99999
+AG/TI  99999 99999
+II/TI  99999 99999
+CC/GI  99999 99999
+CA/GI  99999 99999
+CT/GI -13380.0  -39.3
+CG/GI  99999 99999
+II/GI  99999 99999
+GC/CI  99999 99999
+GA/CI  99999 99999
+GT/CI  99999 99999
+GG/CI  99999 99999
+
+REF : Brent M. Znosko et al (2007) Biochemistry 46 : 4625-4634
+

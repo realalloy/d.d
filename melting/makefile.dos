@@ -1,0 +1,68 @@
+#/******************************************************************************
+# *                    Makefile for melting v4.3b                               *
+# * This program   computes for a nucleotide probe, the enthalpy, the entropy  *
+# * and the melting temperature of the binding to its complementary template.  *
+# * Three types of hybridisation are possible: DNA/DNA, DNA/RNA, and RNA/RNA.  *
+# *                 Copyright (C) Nicolas Le Novère and Marine Dumousseau 1997-2009*
+# ******************************************************************************/
+# 
+#/*    This program is free software; you can redistribute it and/or modify
+#      it under the terms of the GNU General Public License as published by
+#      the Free Software Foundation; either version 2 of the License, or
+#      (at your option) any later version.
+#
+#      This program is distributed in the hope that it will be useful,
+#      but WITHOUT ANY WARRANTY; without even the implied warranty of
+#      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#      GNU General Public License for more details.
+#
+#      You should have received a copy of the GNU General Public License
+#      along with this program; if not, write to the Free Software
+#      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
+#
+#      Nicolas Le Novère and Marine Dumousseau
+#      Computational Neurobiology, EMBL-EBI, Wellcome-Trust Genome Campus
+#      Hinxton CB10 1SD United-Kingdom. e-mail: lenov@ebi.ac.uk
+#*/
+ 
+srcdir = SRC
+
+# where to find the files containing the sets of nearest_neighbor parameters. 
+# progra~1 means "Program Files". Check that you have no
+# directory "progra" followed by something alphabetically inferior
+NN_DIR = c:/progra~1/melting/nnfiles
+
+VPATH = $(srcdir) 
+  
+# Here add your compiler name and the chosen options
+CC = gcc
+# options to produce the release version
+CFLAGS = -Wall -pedantic -O3 -DNN_BASE=\"$(NN_DIR)\"
+# options to produce a version to debug and prof
+#CFLAGS = -Wall -pedantic -g -DNN_BASE=\"$(NN_DIR)\"
+
+OBJECTS = melting.o decode.o calcul.o
+
+melting : $(OBJECTS)
+	$(CC) $(CFLAGS) -o melting $(OBJECTS) -lm
+
+$(OBJECTS) : common.h
+melting.o : melting.c melting.h
+decode.o : decode.c decode.h
+calcul.o : calcul.c calcul.h
+
+install :
+
+.PHONY : clean
+clean :
+	del melting
+	del melting.o
+	del decode.o
+	del calcul.o
+
+
+
+
+
+
+

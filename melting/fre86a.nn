@@ -1,0 +1,53 @@
+/******************************************************************************/
+/*                                   fre86a.nn                                */
+/* contains the parameters for RNA/RNA hybridisation of Freier et al (1986)   */
+/* Proc Natl Acad Sci USA 83: 9373-9377                                       */
+/******************************************************************************/
+
+/*      This program is free software; you can redistribute it and/or modify  */
+/*       it under the terms of the GNU General Public License as published by */
+/*       the Free Software Foundation; either version 2 of the License, or    */
+/*       (at your option) any later version.                                  */
+
+/*       This program is distributed in the hope that it will be useful, but  */
+/*       WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
+/*       General Public License for more details.                             */
+
+/*       You should have received a copy of the GNU General Public License    */
+/*       along with this program; if not, write to the Free Software          */
+/*       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 */
+/*       USA                                                                  */
+/*       Nicolas Le Novère  and Marine Dumousseau                             */
+/*       EMBL-EBI, Wellcome-Trust Genome Campus                               */
+/*       Hinxton Cambridge, CB10 1SD, UK                                      */
+/*      lenov@ebi.ac.uk                                                       */
+
+/*         NOTE THAT THE ORIGINAL TABLE CONTAINED U INSTEAD OF T              */
+/*  IMPORTANT: the parameters appearing in litterature (and therefore in this */
+/*             file) are expressed in cal.mol-1, whereas the results output   */
+/*             by MELTING are in SI, i.e. in J.mol-1                          */
+
+AA  -6600.0  -18.4
+AC -10200.0  -26.2
+AG  -7600.0  -19.2
+AT  -5700.0  -15.5
+CA -10500.0  -27.8
+CC -12200.0  -29.7
+CG  -8000.0  -19.4
+CT  -7600.0  -19.2
+GA -13300.0  -35.5
+GC -14200.0  -34.9
+GG -12200.0  -29.7
+GT -10200.0  -26.2
+TA  -8100.0  -22.6
+TC -13300.0  -35.5
+TG -10500.0  -27.8
+TT  -6600.0  -18.4
+IA      0.0   -5.4
+IG      0.0   -5.4
+
+REF: Freier et al (1986) Proc Natl Acad Sci USA 83: 9373-9377
+
+
+

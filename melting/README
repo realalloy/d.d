@@ -1,0 +1,80 @@
+[INSTALLATION]
+
+Unbundle the distribution in the proper place (e.g. /usr/local/ or c:\Program
+Files) and the file melting-gui.desktop in /usr/share/applications. 
+
+Some pre-compiled binaries are located in the directory BIN.  If no binary
+suitable for your OS is provided, or if you want to compile the programme
+yourself (a good idea), edit the file 'SRC/makefile' to suit your needs
+(particularly the default path for the files containing the nearest- neighbor
+parameters). Please send me a copy of the binary if it is not already in the BIN
+directory (send also the makefile).
+
+UNICES 
+
+Copy the file `makefile.unices' as `makefile'. Type `make' to compile the
+program. Type `make install' to install the files in the proper directories
+specified within the makefile. Type `make clean' to wash out the useless files.
+The manpage melting.1 is moved in the proper location during the
+installation. The other files can stay in DOC or the entire DOC directory can be
+moved under the name melting in /usr/doc or an equivalent directory.
+
+WINDOWS
+
+Copy the file `makefile.dos' as `makefile'. Type `make' to compile the
+program. Type `make clean' to wash out the useless files. The documentation is
+located in the directory DOC. The files containing the nearest-neighbor
+parameters are located in the directory NNFILES. Move them in the proper
+directory specified in the makefile (variable NN_DIR).
+
+[EXECUTION]
+
+READ THE DOCUMENTATION BEFORE TO RUN THE PROGRAMME. 
+
+The executable versions do not require any particular external libraries, 
+and must run directly. Go to the directory containing the programme and 
+type './melting [options]' under Unixes and 'melting.exe [options]' under 
+DOS/Windows. 
+
+You can also put the executable in a directory present in your PATH 
+variable in order to use the programme wherever you are. The environment 
+variable NN_PATH can be set to the directory containing your personal 
+nearest-neighbor parameters. For instance in the bash:
+
+export NN_PATH=$HOME/LIB/MELTING/NNFILES
+
+In a graphical environment you can also launch melting by clicking on an 
+icon linked to the program (the command-line options can then be entered 
+through the properties of the icon, generally in the 'execute' or 'run' 
+entry).
+
+Type 'melting -h' to get a summary of options.
+
+The directory TEST contains files with measured Tm from the literature.
+They are useful only for testing the different sets of NN, the corrections
+of salt concentration etc.
+
+[SCRIPTS OF EXTENSION]
+
+Some perl scripts are provided to perform repetitive tasks. Open them 
+(with a text editor) to know how to use them.
+
+A perl/Tk graphical interface is also provided. The files tkmelting.ptk,
+melting.hlp and the binary melting have to be located in the same 
+directory. run melting.ptk to launch the application.
+
+Of course, you need Perl and Perl/Tk on your machine. Unices users can 
+easily find those programs on their distribution. For Win32 users, Perl 
+distributions containing Tk can be find either at the URL
+ftp://ftp.funet.fi/pub/languages/perl/CPAN/modules/by-authors/Gurusamy_Sarathy
+or from ActiveState (www.activestate.com). Note that in the latter case, Tk is
+not installed by default. 
+
+Report any questions, comments, suggestions or critics to
+
+      Nicolas Le Novère 
+      EMBL-EBI
+      Wellcome-Trust Genome Campus
+      Hinxton Cambridge
+      CB10 1SD United-Kingdom
+      e-mail: lenov@ebi.ac.uk

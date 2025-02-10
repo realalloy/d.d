@@ -1,0 +1,54 @@
+/******************************************************************************/
+/*                                   xia98a.nn                                */
+/* contains the parameters for RNA/RNA hybridisation of Xia et al (1998)      */
+/* Biochemistry 37: 14719-14735                                               */
+/******************************************************************************/
+
+/*      This program is free software; you can redistribute it and/or modify  */
+/*       it under the terms of the GNU General Public License as published by */
+/*       the Free Software Foundation; either version 2 of the License, or    */
+/*       (at your option) any later version.                                  */
+
+/*       This program is distributed in the hope that it will be useful, but  */
+/*       WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
+/*       General Public License for more details.                             */
+
+/*       You should have received a copy of the GNU General Public License    */
+/*       along with this program; if not, write to the Free Software          */
+/*       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 */
+/*       USA                                                                  */
+
+/*       Nicolas Le Novère  and Marine Dumousseau                             */
+/*       EMBL-EBI, Wellcome-Trust Genome Campus                               */
+/*       Hinxton Cambridge, CB10 1SD, UK                                      */
+/*      lenov@ebi.ac.uk                                                       */
+
+/*         NOTE THAT THE ORIGINAL TABLE CONTAINED U INSTEAD OF T              */
+/*  IMPORTANT: the parameters appearing in litterature (and therefore in this */
+/*             file) are expressed in cal.mol-1, whereas the results output   */
+/*             by MELTING are in SI, i.e. in J.mol-1                          */
+
+AA  -6820.0  -19.0
+AC -11400.0  -29.5
+AG -10480.0  -27.1
+AT  -9380.0  -26.7
+CA -10440.0  -26.9
+CC -13390.0  -32.7
+CG -10640.0  -26.7
+CT -10480.0  -27.1
+GA -12440.0  -32.5
+GC -14880.0  -36.9
+GG -13390.0  -32.7
+GT -11400.0  -29.5
+TA  -7690.0  -20.5
+TC -12440.0  -32.5
+TG -10440.0  -26.9
+TT  -6820.0  -19.0
+IA   7730.0    9.0
+IG   3610.0   -1.5
+
+REF: Xia et al (1998) Biochemistry 37: 14719-14735
+
+
+

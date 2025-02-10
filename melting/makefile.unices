@@ -1,0 +1,81 @@
+#/******************************************************************************
+# *                      Makefile for melting v4.3b                             *
+# * This program   computes for a nucleotide probe, the enthalpy, the entropy  *
+# * and the melting temperature of the binding to its complementary template.  *
+# * Three types of hybridisation are possible: DNA/DNA, DNA/RNA, and RNA/RNA.  *
+# *                 Copyright (C) Nicolas Le Novère and Marine Dumousseau 1997-2009*
+# ******************************************************************************/
+# 
+#/*    This program is free software; you can redistribute it and/or modify
+#      it under the terms of the GNU General Public License as published by
+#      the Free Software Foundation; either version 2 of the License, or
+#      (at your option) any later version.
+#
+#      This program is distributed in the hope that it will be useful,
+#      but WITHOUT ANY WARRANTY; without even the implied warranty of
+#      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#      GNU General Public License for more details.
+#
+#      You should have received a copy of the GNU General Public License
+#      along with this program; if not, write to the Free Software
+#      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
+#
+#      Nicolas Le Novère and Marine Dumousseau
+#      Computational Neurobiology, EMBL-EBI, Genome Campus
+#      Hinxton CB10 1SD United-Kingdom. e-mail: lenov@ebi.ac.uk
+#*/
+
+# MUST EXIST
+prefix = /usr/local
+exec_prefix = $(prefix)
+# where to put the executables
+bindir = $(exec_prefix)/bin
+mandir = $(prefix)/man
+# where to put melting-gui.desktop : 
+guidir = /usr/share/applications
+# MUST EXIST
+docdir = $(prefix)/doc/MELTING
+srcdir = SRC
+
+# where to find the files containing the sets of nearest_neighbor parameters. 
+# This one is to initialise the default value of melting. 
+NNDIR = $(prefix)/share/MELTING/NNFILES
+
+#INSTALL = /usr/bin/install -c
+VPATH = $(srcdir)
+
+# Here add your compiler name and the chosen options
+CC = gcc
+# options to produce the release version
+CFLAGS = -Wall -pedantic -O3 -DNN_BASE=\"$(NNDIR)\"
+# options to produce a version to debug and prof
+#CFLAGS = -Wall -pedantic -g -DNN_BASE=\"$(NNDIR)\"
+
+OBJECTS = melting.o decode.o calcul.o
+
+all : $(OBJECTS)
+	$(CC) $(CFLAGS) -o melting $(OBJECTS) -lm
+
+$(OBJECTS) : common.h
+melting.o : melting.c melting.h
+decode.o : decode.c decode.h
+calcul.o : calcul.c calcul.h
+
+install :
+	cp melting $(bindir)
+	cp BIN/tkmelting.pl $(bindir)
+	cp DOC/melting.1 $(mandir)/man1/melting.1
+	if test -e $(prefix)/share/MELTING ; then echo '$(prefix)/share/MELTING is already present'; else mkdir $(prefix)/share/MELTING; fi
+	if test -e $(prefix)/share/MELTING/NNFILES; then echo '$(prefix)/share/MELTING/NNFILES is already present'; else mkdir $(prefix)/share/MELTING/NNFILES; fi
+	cp NNFILES/*.nn $(NNDIR)/
+	cp melting-gui.desktop $(guidir)/melting-gui.desktop
+
+.PHONY : clean
+clean :
+	rm $(OBJECTS) melting
+
+
+
+
+
+

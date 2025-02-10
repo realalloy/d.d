@@ -1,0 +1,275 @@
+/******************************************************************************/
+/*                             dnadnamm.nn                                    */
+/* contains the parameters for DNA/DNA mismatches.                            */                 
+/******************************************************************************/
+
+/*      This program is free software; you can redistribute it and/or modify  */
+/*       it under the terms of the GNU General Public License as published by */
+/*       the Free Software Foundation; either version 2 of the License, or    */
+/*       (at your option) any later version.                                  */
+
+/*       This program is distributed in the hope that it will be useful, but  */
+/*       WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
+/*       General Public License for more details.                             */
+
+/*       You should have received a copy of the GNU General Public License    */
+/*       along with this program; if not, write to the Free Software          */
+/*       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 */
+/*       USA                                                                  */
+
+/*       Nicolas Le Novère  and Marine Dumousseau                             */
+/*       EMBL-EBI, Wellcome-Trust Genome Campus                               */
+/*       Hinxton Cambridge, CB10 1SD, UK                                      */
+/*      lenov@ebi.ac.uk                                                       */
+/*  IMPORTANT: the parameters appearing in litterature (and therefore in this */
+/*             file) are expressed in cal.mol-1, whereas the results output   */
+/*             by MELTING are in SI, i.e. in J.mol-1                          */
+/*  The parameters equal to 99999 are in fact unknowneen determined so far.   */
+
+AA/AA 99999 99999
+AA/AC 99999 99999
+AA/AG 99999 99999
+AA/AT  4700.0  12.9
+AA/CA 99999 99999
+AA/CC 99999 99999
+AA/CG 99999 99999
+AA/CT  7600.0  20.2
+AA/GA 99999 99999
+AA/GC 99999 99999
+AA/GG 99999 99999
+AA/GT  3000.0   7.4
+AA/TA  1200.0   1.7
+AA/TC  2300.0   4.6
+AA/TG  -600.0  -2.3
+AC/AA 99999 99999
+AC/AC 99999 99999
+AC/AG -2900.0  -9.8
+AC/AT 99999 99999
+AC/CA 99999 99999
+AC/CC 99999 99999
+AC/CG  -700.0  -3.8
+AC/CT 99999 99999
+AC/GA 99999 99999
+AC/GC 99999 99999
+AC/GG   500.0   3.2
+AC/GT 99999 99999
+AC/TA  5300.0  14.6
+AC/TC     0.0  -4.4
+AC/TT   700.0   0.2
+AG/AA 99999 99999
+AG/AC  -900.0  -4.2
+AG/AG 99999 99999
+AG/AT 99999 99999
+AG/CA 99999 99999
+AG/CC   600.0  -0.6
+AG/CG 99999 99999
+AG/CT 99999 99999
+AG/GA 99999 99999
+AG/GC -4000.0 -13.2
+AG/GG 99999 99999
+AG/GT 99999 99999
+AG/TA  -700.0  -2.3
+AG/TG -3100.0  -9.5
+AG/TT  1000.0   0.9
+AT/AA  1200.0   1.7
+AT/AC 99999 99999
+AT/AG 99999 99999
+AT/AT 99999 99999
+AT/CA  5300.0  14.6
+AT/CC 99999 99999
+AT/CG 99999 99999
+AT/CT 99999 99999
+AT/GA  -700.0  -2.3
+AT/GC 99999 99999
+AT/GG 99999 99999
+AT/GT 99999 99999
+AT/TC -1200.0  -6.2
+AT/TG -2500.0  -8.3
+AT/TT -2700.0 -10.8
+CA/AA 99999 99999
+CA/AC 99999 99999
+CA/AG 99999 99999
+CA/AT  3400.0   8.0
+CA/CA 99999 99999
+CA/CC 99999 99999
+CA/CG 99999 99999
+CA/CT  6100.0  16.4
+CA/GA  -900.0  -4.2
+CA/GC  1900.0   3.7
+CA/GG  -700.0  -2.3
+CA/TA 99999 99999
+CA/TC 99999 99999
+CA/TG 99999 99999
+CA/TT  1000.0   0.7
+CC/AA 99999 99999
+CC/AC 99999 99999
+CC/AG  5200.0  14.2
+CC/AT 99999 99999
+CC/CA 99999 99999
+CC/CC 99999 99999
+CC/CG  3600.0   8.9
+CC/CT 99999 99999
+CC/GA   600.0  -0.6
+CC/GC -1500.0  -7.2
+CC/GT  -800.0  -4.5
+CC/TA 99999 99999
+CC/TC 99999 99999
+CC/TG  5200.0  13.5
+CC/TT 99999 99999
+CG/AA 99999 99999
+CG/AC  1900.0   3.7
+CG/AG 99999 99999
+CG/AT 99999 99999
+CG/CA 99999 99999
+CG/CC -1500.0  -7.2
+CG/CG 99999 99999
+CG/CT 99999 99999
+CG/GA -4000.0 -13.2
+CG/GG -4900.0 -15.3
+CG/GT -4100.0 -11.7
+CG/TA 99999 99999
+CG/TC -1500.0  -6.1
+CG/TG 99999 99999
+CG/TT 99999 99999
+CT/AA 99999 99999
+CT/AC 99999 99999
+CT/AG 99999 99999
+CT/AT 99999 99999
+CT/CA     0.0  -4.4
+CT/CC 99999 99999
+CT/CG 99999 99999
+CT/CT 99999 99999
+CT/GC -1500.0  -6.1
+CT/GG -2800.0  -8.0
+CT/GT -5000.0 -15.8
+CT/TA -1200.0  -6.2
+CT/TC 99999 99999
+CT/TG 99999 99999
+CT/TT 99999 99999
+GA/AA 99999 99999
+GA/AC 99999 99999
+GA/AG 99999 99999
+GA/AT   700.0   0.7
+GA/CA -2900.0  -9.8
+GA/CC  5200.0  14.2
+GA/CG  -600.0  -1.0
+GA/GA 99999 99999
+GA/GC 99999 99999
+GA/GG 99999 99999
+GA/GT  1600.0   3.6
+GA/TA 99999 99999
+GA/TC 99999 99999
+GA/TG 99999 99999
+GA/TT -1300.0  -5.3
+GC/AA 99999 99999
+GC/AC 99999 99999
+GC/AG  -600.0  -1.0
+GC/AT 99999 99999
+GC/CA  -700.0  -3.8
+GC/CC  3600.0   8.9
+GC/CT  2300.0   5.4
+GC/GA 99999 99999
+GC/GC 99999 99999
+GC/GG -6000.0 -15.8 
+GC/GT 99999 99999
+GC/TA 99999 99999
+GC/TC 99999 99999
+GC/TG -4400.0 -12.3
+GC/TT 99999 99999
+GG/AA 99999 99999
+GG/AC  -700.0  -2.3
+GG/AG 99999 99999
+GG/AT 99999 99999
+GG/CA   500.0   3.2
+GG/CG -6000.0 -15.8 
+GG/CT  3300.0  10.4
+GG/GA 99999 99999
+GG/GC -4900.0 -15.3
+GG/GG 99999 99999
+GG/GT 99999 99999
+GG/TA 99999 99999
+GG/TC -2800.0  -8.0
+GG/TG 99999 99999
+GG/TT  5800.0  16.3
+GT/AA  -600.0  -2.3
+GT/AC 99999 99999
+GT/AG 99999 99999
+GT/AT 99999 99999
+GT/CC  5200.0  13.5
+GT/CG -4400.0 -12.3
+GT/CT -2200.0  -8.4
+GT/GA -3100.0  -9.5
+GT/GC 99999 99999
+GT/GG 99999 99999
+GT/GT 99999 99999
+GT/TA -2500.0  -8.3
+GT/TC 99999 99999
+GT/TG  4100.0   9.5
+GT/TT 99999 99999
+TA/AA  4700.0  12.9
+TA/AC  3400.0   8.0
+TA/AG   700.0   0.7
+TA/CA 99999 99999
+TA/CC 99999 99999
+TA/CG 99999 99999
+TA/CT  1200.0   0.7
+TA/GA 99999 99999
+TA/GC 99999 99999
+TA/GG 99999 99999
+TA/GT  -100.0  -1.7
+TA/TA 99999 99999
+TA/TC 99999 99999
+TA/TG  -100.0  -1.7
+TA/TT   200.0  -1.5
+TC/AA  7600.0  20.2
+TC/AC  6100.0  16.4
+TC/AT  1200.0   0.7
+TA/CA 99999 99999
+TA/CC 99999 99999
+TC/CG  2300.0   5.4
+TC/CT 99999 99999
+TC/GA 99999 99999
+TC/GC 99999 99999
+TC/GG  3300.0  10.4
+TC/GT 99999 99999
+TC/TA 99999 99999
+TC/TC 99999 99999
+TC/TG -2200.0  -8.4
+TC/TT 99999 99999
+TG/AA  3000.0   7.4
+TG/AG  1600.0   3.6
+TG/AT  -100.0  -1.7
+TG/CA 99999 99999
+TG/CC  -800.0  -4.5
+TG/CG 99999 99999
+TG/CT 99999 99999
+TG/GA 99999 99999
+TG/GC -4100.0 -11.7
+TG/GG 99999 99999
+TG/GT -1400.0  -6.2
+TG/TA 99999 99999
+TG/TC -5000.0 -15.8
+TG/TG 99999 99999
+TG/TT 99999 99999
+TT/AC  1000.0   0.7
+TT/AG -1300.0  -5.3
+TT/AT   200.0  -1.5
+TT/CA   700.0   0.2
+TT/CC 99999 99999
+TT/CG 99999 99999
+TT/CT 99999 99999
+TT/GA  1000.0   0.9
+TT/GC 99999 99999
+TT/GG  5800.0  16.3
+TT/GT 99999 99999
+TT/TA -2700.0 -10.8
+TT/TC 99999 99999
+TT/TG 99999 99999
+TT/TT 99999 99999
+
+REF: Allawi and SantaLucia (1997). Biochemistry 36: 10581-10594. 
+REF: Allawi and SantaLucia (1998). Biochemistry 37: 2170-2179.
+REF: Allawi and SantaLucia (1998). Nuc Acids Res 26: 2694-2701. 
+REF: Allawi and SantaLucia (1998). Biochemistry 37: 9435-9444.
+REF: Peyret et al. (1999). Biochemistry 38: 3468-3477

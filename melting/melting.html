@@ -1,0 +1,1160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<HTML>
+<HEAD>
+<TITLE>melting</TITLE>
+<META NAME="description" CONTENT="melting">
+<META NAME="keywords" CONTENT="melting">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="melting/melting.css">
+
+</HEAD>
+
+<BODY >
+
+<H1><A NAME="SECTION00010000000000000000">
+1 Name </A>
+</H1>
+<SMALL>MELTING</SMALL> - nearest-neighbor computation of nucleic acid hybridation
+
+<H1><A NAME="SECTION00020000000000000000">
+2 Synopsis</A>
+</H1>
+<B>melting</B> [<I>options </I>]  
+
+<H1><A NAME="SECTION00030000000000000000">
+3 Description </A>
+</H1>
+
+<P>
+<SMALL>MELTING</SMALL> computes, for a nucleic acid duplex, the enthalpy and the
+entropy of the helix-coil transition, and then its melting temperature. Three
+types of hybridisation are possible: DNA/DNA, DNA/RNA, and RNA/RNA. The program
+uses the method of nearest-neighbors. The set of thermodynamic parameters can be
+easely changed, for instance following an experimental breakthrough. Melting is
+a free program in both sense of the term. It comes with no cost and it is
+open-source. In addition it is coded in ISO C and can be compiled on any
+operating system. Some perl scripts are provided to show how melting can be used
+as a block to construct more ambitious programs.
+
+<P>
+If you use <SMALL>MELTING</SMALL>, please quote
+
+<P>
+<BLOCKQUOTE>
+Le Nov&#232;re. <SMALL>MELTING</SMALL>, a free tool to compute the
+    melting temperature of nucleic acid duplex. <I>Bioinformatics</I>, 17: 1226-1227. 
+
+</BLOCKQUOTE>
+
+<P>
+
+<H1><A NAME="SECTION00040000000000000000">
+4 Options </A>
+</H1>
+
+<P>
+The options are treated sequentially. If there is a conflict between the value
+of two options, the latter normally erases the former.
+
+<P>
+<DL>
+<DT><STRONG><B>-A</B><I>file.nn</I></STRONG></DT>
+<DD>
+<BR>
+Informs the program to use <I>file.nn</I> as an alternative set of
+  nearest-neighbor parameters, rather than the default for the specified
+  hybridisation type (option <B>-H</B>). The standard distribution of melting
+  provides some files ready-to-use: <I>all97a.nn</I> (Allawi et al 1997),
+  <I>bre86a.nn</I> (Breslauer et al 1986), <I>san96a.nn</I> (SantaLucia et
+  al 1996), <I>sug96a.nn</I> (Sugimoto et al 1996), <I>san04a.nn</I> (Santalucia 
+  et al 2004) (DNA/DNA),
+  <I>fre86a.nn</I> (Freier et al 1986), <I>xia98a.nn</I> (Xia et al 1998)
+  (RNA/RNA) and <I>sug95a.nn</I> (Sugimoto et al 1995) (DNA/RNA). The program
+  will look for the file in a directory specified during the installation.
+  However, if an environment variable NN_PATH is defined, melting will search
+  in this one first. Be careful, the option <B>-A </B> changes the default
+  parameter set defined by the option <B>-H.</B>
+</DD>
+<DT><STRONG><B>-C</B><I>complementary_sequence</I></STRONG></DT>
+<DD>
+<BR>
+Enters the complementary sequence, from 3' to 5'. This option is mandatory if
+  there are mismatches between the two strands. If it is not used, the program
+  will compute it as the complement of the sequence entered with the option
+  <B>-S</B>
+</DD>
+<DT><STRONG><B>-D</B><I>dnadnade.nn</I></STRONG></DT>
+<DD>
+<BR>
+Informs the program to use the file <I>dnadnade.nn</I> to compute the
+  contribution of dangling ends to the thermodynamic of helix-coil transition.
+  The dangling ends are not taken into account by the approximative mode.
+</DD>
+<DT><STRONG><B>-F</B><I>factor</I>  </STRONG></DT>
+<DD>
+<BR>
+This is the a correction factor used to modulate the effect of the nucleic
+  acid concentration in the computation of the melting temperature. See section
+  ALGORITHM for details.
+</DD>
+<DT><STRONG><B>-G</B><I>x.xxe-xx</I>  </STRONG></DT>
+<DD>
+<BR>
+Magnesium  concentration  (No maximum concentration for the moment). The effect  
+   of  ions  on  thermodynamic  stability  of nucleic  acid duplexes is complex,
+   and the correcting functions are  at  best rough  approximations.The published 
+   Tm  correction formula for divalent Mg<sup>2+</sup> ions of Owczarzy et al.(2008) can
+   take in account the competitive binding of monovalent and divalent ions on DNA. 
+   However this formula is only for DNA duplexes.
+</DD>
+<DT><STRONG><B>-h</B></STRONG></DT>
+<DD>
+<BR>
+Displays a short help and quit with EXIT_SUCCESS. 
+</DD>
+<DT><STRONG><B>-H</B><I>hybridisation_type</I></STRONG></DT>
+<DD>
+<BR>
+Specifies the hybridisation type. This will set the nearest-neighbor set to
+  use if no alternative set is provided by the option <B>-A</B> (remember the
+  options are read sequentially). Moreover this parameter determines the
+  equation to use if the sequence length exceeds the limit of application of the
+  nearest-neighbor approach (arbitrarily set up by the author). Possible values
+  are <I>dnadna</I>, <I>dnarna</I> and <I>rnadna</I> (synonymous), and
+  <I>rnarna</I>. For reasons of compatibility the values of the previous
+  versions of melting <I>A,B,C,F,R,S,T,U,W</I> are still available although
+  <B>strongly </B> deprecated. Use the option <B>-A</B> to require an
+  alternative set of thermodynamic parameters. <B>Important:</B> If the duplex
+  is a DNA/RNA heteroduplex, the sequence of the DNA strand has to be entered
+  with the option <B>-S</B>
+</DD>
+<DT><STRONG><B>-I</B><I>input_file</I>  </STRONG></DT>
+<DD>
+<BR>
+Provides the name of an input file containing the parameters of the
+run. The input has to contain one parameter per line, formatted as in
+the command line. The order  is not important, as well as blank lines.
+example:   
+
+<P>
+<PRE>
+ -Hdnadna  
+ -Asug96a.nn
+ -SAGCTCGACTC
+ -CTCGAGGTGAG
+ -N0.2
+ -P0.0001 
+ -v 
+ -Ksan96a
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG><B>-i</B><I>file.nn</I></STRONG></DT>
+<DD>
+<BR>
+  Informs  the  program to use file.nn as an alternative set  of  inosine pair 
+  parameters, rather than  the  default  for the specified hybridisation type. 
+  The standard distribution of melting provides some  files ready-to-use:  san05a.nn 
+ (Santalucia et al 2005) for deoxyinosine in DNA duplexes, bre07a.nn (Brent M Znosko 
+  et al 2007)for inosine in RNA duplexes. Note  that  not all the inosine mismatched 
+  wobble's pairs have been investigated. Therefore it could be impossible to  compute
+  the Tm of a duplex with inosine pairs. Moreover, those inosine pairs are not taken 
+  into account by the  approximative mode.
+</DD>
+<DT><STRONG><B>-K</B><I>salt_correction</I></STRONG></DT>
+<DD>
+<BR>
+Permits to chose another correction for the concentration in sodium. Currently, 
+one can chose between <I>wet91a, san96a, san98a</I>.  See section ALGORITHM 
+</DD>
+<DT><STRONG><B>-k</B><I>x.xxe-xx</I>  </STRONG></DT>
+<DD>
+<BR>
+   Potassium  concentration  (No maximum concentration for the moment). The effect of ions 
+   on  thermodynamic  stability  of nucleic  acid duplexes is complex, and the correcting 
+   functions are  at  best rough  approximations.The published  Tm  correction formula for 
+   sodium ions of Owczarzy et al.(2008) is therefore also applicable to buffers containing Tris or
+   KCl. Monovalent K<sup>+</sup>, Na<sup>+</sup>, Tris<sup>+</sup> ions  stabilize  DNA duplexes 
+   with similar potency, and their effects on duplex stability are additive. However this formula 
+   is only for DNA duplexes.
+</DD>
+<DT><STRONG><B>-L</B></STRONG></DT>
+<DD>
+<BR>
+Prints the legal informations and quit
+  with EXIT_SUCCESS. 
+</DD>
+<DT><STRONG><B>-M</B><I>dnadnamm.nn</I></STRONG></DT>
+<DD>
+<BR>
+Informs the program to use the file  <I>dnadnamm.nn</I> to compute
+the contribution of mismatches to the thermodynamic of helix-coil
+transition. Note that not all the mismatched Crick's pairs have been
+investigated. Therefore it could be impossible to compute the Tm of a
+mismatched duplex. Moreover, those mismatches are not taken into
+account by the approximative mode. 
+</DD>
+<DT><STRONG><B>-N</B><I>x.xxe-xx</I>  </STRONG></DT>
+<DD>
+<BR>
+Sodium concentration (between 0 and 10 M). The effect of ions on thermodynamic
+  stability of nucleic acid duplexes is complex, and the correcting functions
+  are at best rough approximations. Moreover, they are generally reliable only
+  for [Na<sup>+</sup>] belonging to [0.1,1&nbsp;M]. If there are no other ions in 
+  solution, we can use only the sodium correction. In the other case, we use the Owczarzy's 
+  algorithm.
+</DD>
+<DT><STRONG><B>-O</B><I>output_file</I></STRONG></DT>
+<DD>
+<BR>
+The output is directed to this file instead of the standard
+output. The name of the file can be omitted. An automatic name is then
+generated, of the form  meltingYYYYMMMDD_HHhMMm.out (of course, 
+on POSIX compliant systems, you  can emulate this with the redirection 
+of stdout to a file constructed with the program date).  
+</DD>
+<DT><STRONG><B>-P</B><I>x.xxe-xx</I></STRONG></DT>
+<DD>
+<BR>
+Concentration of the nucleic acid strand in excess (between 0 and 0.1 M).
+</DD>
+<DT><STRONG><B>-p</B></STRONG></DT>
+<DD>
+<BR>
+Return the directory supposed to contain the sets of calorimetric parameters and quit with
+EXIT_SUCCESS. If the environment variable NN_PATH is set, it is returned. Otherwise, the value
+defined by default during the compilation is returned.
+</DD>
+<DT><STRONG><B>-q</B>  </STRONG></DT>
+<DD>
+<BR>
+Turn off the interactive correction of wrongly entered
+parameter. Useful for run through a server, or a batch script. Default
+is OFF (i.e. interactive on). The switch works in both sens. 
+ Therefore if  <B>-q </B> has been set in an input file, another
+ <B>-q </B> on the command line will switch the quiet mode OFF (same
+ thing if two <B>-q </B> are set on the same command line).  
+</DD>
+<DT><STRONG><B>-S</B><I>sequence</I>  </STRONG></DT>
+<DD>
+<BR>
+Sequence of one strand of the nucleic 
+acid duplex, entered 5' to 3'. <B>Important:</B> If it is a DNA/RNA  heteroduplex, 
+the sequence of the DNA strand has to be entered.  
+Uridine and thymidine are 
+considered as identical. The bases can be upper or lowercase.
+</DD>
+<DT><STRONG><B>-T</B><I>xxx</I>  </STRONG></DT>
+<DD>
+<BR>
+Size threshold before approximative computation. The nearest-neighbour approach 
+will be used only if the length of the sequence is inferior to this threshold.
+</DD>
+<DT><STRONG><B>-t</B><I>x.xxe-xx</I>  </STRONG></DT>
+<DD>
+<BR>
+Tris buffer  concentration  (No maximum concentration for the moment). 
+   The effect  of  ions  on  thermodynamic  stability  of nucleic  acid 
+   duplexes is complex, and the correcting functions are  at  best
+   rough  approximations.The published  Tm  correction formula for sodium ions of 
+   Owczarzy et al (2008)is therefore also applicable to buffers containing Tris or
+   KCl. Monovalent K<sup>+</sup>, Na<sup>+</sup>, Tris<sup>+</sup> ions  stabilize  DNA duplexes with similar potency, and 
+   their effects on duplex stability are additive. However this formula is only for DNA 
+   duplexes. Be aware, the Tris<sup>+</sup> ion concentration is about half of the total tris buffer
+   concentration.
+</DD>
+<DT><STRONG><B>-v</B>  </STRONG></DT>
+<DD>
+<BR>
+Control the verbose 
+mode, issuing a lot more information about the current run  (try it once 
+to see if you can get something interesting). Default is OFF. The  switch 
+works in both sens. Therefore if  <B>-v </B> has been set in an input file, another 
+<B>-v </B> on the command line will switch the verbose mode OFF (same thing if 
+two  <B>-v </B> are set on the same command line).  
+</DD>
+<DT><STRONG><B>-V</B>  </STRONG></DT>
+<DD>
+<BR>
+Displays the version number 
+and quit with EXIT_SUCCESS 
+</DD>
+<DT><STRONG><B>-x</B>  </STRONG></DT>
+<DD>
+<BR>
+Force the program to compute an approximative 
+tm, based on G+C content. This option has to be used with caution. Note 
+that such a calcul is increasingly incorrect when the length of  the duplex 
+decreases. Moreover, it does not take into account nucleic acid concentration, 
+which is a strong mistake.    
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H1><A NAME="SECTION00050000000000000000">
+5 Algorithm </A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00051000000000000000">
+5.1 Thermodynamics of helix-coil transition of nucleic acid</A>
+</H2>  
+The nearest-neighbor approach is based on the fact that the helix-coil
+transition works as a zipper. After an initial attachment, the hybridisation
+propagates laterally.  Therefore, the process depends on the adjacent
+nucleotides on each strand (the Crick's pairs).  Two duplexes with the same base
+pairs could have different stabilities, and on the contrary, two duplexes with
+different sequences but identical sets of Crick's pairs will have the same
+thermodynamics properties (see Sugimoto et al. 1994).  This program first
+computes the hybridisation enthalpy and entropy from the elementary parameters
+of each Crick's pair.
+<!-- MATH
+ \begin{displaymath}
+\begin{array}[t]{ccc}
+  \Delta{}H&=&\delta{}h_\mathrm{initiation}+\sum \delta{}h_\mathrm{Crick's pair}\\
+  \Delta{}S&=&\delta{}s_\mathrm{initiation}+\sum \delta{}s_\mathrm{Crick's pair}
+  \end{array}
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="262" HEIGHT="57" ALIGN="MIDDLE" BORDER="0"
+ SRC="melting/img1.png"
+ ALT="$\displaystyle \begin{array}[t]{ccc}
+\Delta{}H&amp;=&amp;\delta{}h_\mathrm{initiation}+\...
+...&amp;\delta{}s_\mathrm{initiation}+\sum \delta{}s_\mathrm{Crick's pair}
+\end{array}$">
+</DIV><P></P>
+
+<P>
+See Wetmur J.G. (1991) and SantaLucia (1998) 
+for deep reviews on the nucleic  acid hybridisation and on the different 
+set of nearest-neighbor parameters.    
+
+<P>
+
+<P></P>
+<DIV ALIGN="CENTER"><A NAME="320"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 1:</STRONG>
+Comparison of experimental and computed Tm for various sets of
+  nearest-neighbor parameters. [Na+]&nbsp;=&nbsp;1&nbsp;M, [nucleic acid]&nbsp;=&nbsp;4.10-4&nbsp;M</CAPTION>
+<TR><TD><IMG
+ SRC="melting/image1M.png" heigth="200"
+ ></TD></TR>
+</TABLE>
+</DIV><P></P>
+
+<P>
+
+<P></P>
+<DIV ALIGN="CENTER"><A NAME="321"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2:</STRONG>
+Comparison of experimental and computed Tm for various sets of
+  nearest-neighbor parameters. [Na+]&nbsp;=&nbsp;0.11&nbsp;M, [nucleic acid]&nbsp;=&nbsp;8.10-6&nbsp;M</CAPTION>
+<TR><TD><IMG
+ SRC="melting/image0_11M.png" heigth="200"
+></TD></TR>
+</TABLE>
+</DIV><P></P>
+
+<P>
+
+<H2><A NAME="SECTION00052000000000000000">
+5.2 Effect of mismatches and dangling ends</A>
+</H2>  
+
+<P>
+The mismatching (inosine  mismatches  included) pairs are also taken into account. However the thermodynamic
+parameters are still not available for every possible cases (notably when both
+positions are mismatched). In such a case, the program, unable to compute any
+relevant result, will quit with a warning.  The two first and positions cannot
+be mismatched. in such a case, the result is unpredictable, and all cases are
+possible. for instance (see Allawi and SanLucia 1997), the duplex
+
+<DIV ALIGN="LEFT">
+<TT>
+ A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T &nbsp;
+<BR>&nbsp;<U>G</U>TGAGCTCA<U>T</U> &nbsp;
+<BR>&nbsp;<U>T</U>ACTCGAGT<U>G</U> &nbsp;
+<BR>
+T &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A &nbsp;&nbsp;
+<BR></TT>
+</DIV>
+
+<P>
+is more stable than 
+
+<P>
+
+<DIV ALIGN="LEFT">
+<TT>
+ A<U>G</U>TGAGCTCA<U>T</U>T 
+<BR>
+T<U>T</U>ACTCGAGT<U>G</U>A 
+<BR></TT>
+</DIV>
+
+<P>
+The dangling ends, that is the unmatched terminal nucleotides, can be taken into
+account.
+
+<P>
+
+<H2><A NAME="SECTION00053000000000000000">
+5.3 Example</A>
+</H2>
+
+<P>
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{multline*}
+\Delta H {\mbox{\texttt{AGCGATGAA-}} \choose \mbox{\texttt{-CGCTGCTTT}}} =
+\Delta H {\mbox{\texttt{AG}} \choose \mbox{\texttt{-C}} } + 
+\Delta H {\mbox{\texttt{A-}} \choose \mbox{\texttt{TT}} } \\+
+\Delta H {\mbox{\texttt{G}} \choose \mbox{\texttt{C}} }_\mathrm{init} +
+\Delta H {\mbox{\texttt{A}} \choose \mbox{\texttt{T}} }_\mathrm{init} \\+
+\Delta H {\mbox{\texttt{GC}} \choose \mbox{\texttt{CG}} } +
+\Delta H {\mbox{\texttt{CG}} \choose \mbox{\texttt{GC}} } +
+2x \Delta H {\mbox{\texttt{GA}} \choose \mbox{\texttt{CT}} } +
+\Delta H {\mbox{\texttt{AA}} \choose \mbox{\texttt{TT}} } \\+
+\Delta H {\mbox{\texttt{A\underline{T}}} \choose \mbox{\texttt{T\underline{G}}} } +
+\Delta H {\mbox{\texttt{\underline{T}G}} \choose \mbox{\texttt{\underline{G}C}} }
+\end{multline*}
+ -->
+<IMG
+ SRC="melting/img2.png"
+ ALT="\begin{multline*}
+\Delta H {\mbox{\texttt{AGCGATGAA-}} \choose \mbox{\texttt{-CG...
+...texttt{\underline{T}G}} \choose \mbox{\texttt{\underline{G}C}} }
+\end{multline*}"></DIV>
+<BR CLEAR="ALL">
+<P><P></P>
+
+<P>
+(The same computation is performed for <I>&Delta;G</I>)
+
+<P>
+
+<H2><A NAME="SECTION00054000000000000000">
+5.4 The melting temperature </A>
+</H2>  
+Then the melting temperature is computed by the following formula:   
+
+<P>
+<TABLE CELLPADDING=3>
+<TR><TD ALIGN="RIGHT">Tm</TD>
+<TD ALIGN="CENTER">=</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=115><!-- MATH
+ \begin{math}
+\frac{\displaystyle \Delta{}H}{\displaystyle \Delta{}S + R \ln (C_T/F)} \hspace{2em} +
+\end{math}
+ -->
+ <IMG
+ SRC="melting/img4.png"
+ ALT="$ \frac{\displaystyle \Delta{}H}{\displaystyle \Delta{}S + R \ln (C_T/F)} \hspace{2em} + $"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=158><!-- MATH
+ \begin{math}
+\mathcal{F}([\mathrm{Na}^+]) - 273.15
+\end{math}
+ -->
+ <IMG
+ SRC="melting/img5.png"
+ ALT="$ \mathcal{F}([\mathrm{Na}^+]) - 273.15 $"></TD>
+</TR>
+<TR><TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=115>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=158>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=115><FONT SIZE="-1"><I>Tm</I> in K (for [Na+] = 1&nbsp;M)    </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=158><FONT SIZE="-1"><I>correction</I> for the 
+salt concentration (if there are only Na+ cations in the solution) and to get the temperature in degree Celsius. (In fact 
+some corrections are directly included in the <I>&Delta;S</I>. See that of SanLucia 
+1998)    
+</FONT></TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H2><A NAME="SECTION00055000000000000000">
+5.5 Correction for the concentration of nucleic acid </A>
+</H2>  
+
+<P>
+Many thanks to Ivano Zara (zarivan@cribi.unipd.it), who gave me most of
+the following explanation.
+
+<P>
+In a reaction <!-- MATH
+ $A + B \rightleftharpoons D$
+ -->
+<IMG
+ ALIGN="center"
+ SRC="melting/img6.png"
+ ALT="$ A + B \rightleftharpoons D$">, where <I>A</I> is the strand in
+excess, <I>B</I> the other strand, and <I>D</I> the duplex, and where the
+oligonucleotides <I>are not self-complementary</I>, 
+<!-- MATH
+ \begin{displaymath}
+\Delta G = \Delta G_0 - RT lnK = \Delta H_0 - T \Delta S_0 - RT lnK
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ SRC="melting/img7.png"
+ ALT="$\displaystyle \Delta G = \Delta G_0 - RT lnK = \Delta H_0 - T \Delta S_0 - RT lnK
+$">
+</DIV><P></P>
+and 
+<!-- MATH
+ \begin{displaymath}
+K = \frac{[A][B]}{[D]}
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ SRC="melting/img8.png"
+ ALT="$\displaystyle K = \frac{[A][B]}{[D]}
+$">
+</DIV><P></P>
+If &xi; is the fraction of molecules <I>B</I> that forms the duplex,
+<BR>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{eqnarray*}
+\   [D] & = & \xi [B]_0 \\
+\   \mbox{}[B] & = & [B]_0 - [D] = [B]_0 - \xi [B]_0 = [B]_0 ( 1 - \xi ) \\
+  \mbox{}[A] & = & [A]_0 - [D] = [A]_0 - \xi [B]_0
+\end{eqnarray*}
+ -->
+<TABLE CELLPADDING="0" ALIGN="CENTER" WIDTH="100%">
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ SRC="melting/img10.png"
+ ALT="$\displaystyle \ [D]$"></TD>
+<TD WIDTH="10" ALIGN="CENTER" NOWRAP><IMG
+ SRC="melting/img11.png"
+ ALT="$\displaystyle =$"></TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ SRC="melting/img12.png"
+ ALT="$\displaystyle \xi [B]_0$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ SRC="melting/img13.png"
+ ALT="$\displaystyle \ $">&nbsp; &nbsp;&nbsp; <IMG
+ SRC="melting/img14.png"
+ ALT="$\displaystyle [B]$"></TD>
+<TD WIDTH="10" ALIGN="CENTER" NOWRAP><IMG
+ SRC="melting/img11.png"
+ ALT="$\displaystyle =$"></TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ SRC="melting/img15.png"
+ ALT="$\displaystyle [B]_0 - [D] = [B]_0 - \xi [B]_0 = [B]_0 ( 1 - \xi )$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp; <IMG
+ SRC="melting/img16.png"
+ ALT="$\displaystyle [A]$"></TD>
+<TD WIDTH="10" ALIGN="CENTER" NOWRAP><IMG
+ SRC="melting/img11.png"
+ ALT="$\displaystyle =$"></TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ SRC="melting/img17.png"
+ ALT="$\displaystyle [A]_0 - [D] = [A]_0 - \xi [B]_0$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+Therefore,
+<!-- MATH
+ \begin{displaymath}
+K = \frac{([A]_0 - \xi [B]_0) [B]_0 ( 1 - \xi )}{\xi [B]_0} = \frac{([A]_0 - \xi [B]_0) ( 1 - \xi )}{\xi}
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ SRC="melting/img18.png"
+ ALT="$\displaystyle K = \frac{([A]_0 - \xi [B]_0) [B]_0 ( 1 - \xi )}{\xi [B]_0} = \frac{([A]_0 - \xi [B]_0) ( 1 - \xi )}{\xi}
+$">
+</DIV><P></P>
+and, at melting temperature, when <IMG
+ ALIGN="center"
+ SRC="melting/img19.png"
+ ALT="$ \xi = 1/2$">, 
+<!-- MATH
+ \begin{displaymath}
+K = [A]_0 - \frac{1}{2} [B]_0
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ SRC="melting/img20.png"
+ ALT="$\displaystyle K = [A]_0 - \frac{1}{2} [B]_0
+$">
+</DIV><P></P>
+If both strands are present in equivalent amount, <!-- MATH
+ $[A]_0 = [B]_0$
+ -->
+<IMG
+ALIGN="center" 
+SRC="melting/img21.png"
+ ALT="$ [A]_0 = [B]_0$"> and
+<!-- MATH
+ $C_T = [A]_0 + [B]_0$
+ -->
+<IMG
+ALIGN="center" 
+ SRC="melting/img22.png"
+ ALT="$ C_T = [A]_0 + [B]_0$">, then <!-- MATH
+ $K = \frac{C_T}{4}$
+ -->
+<IMG
+ALIGN="center" 
+ SRC="melting/img23.png"
+ ALT="$ K = \frac{C_T}{4}$"> (<IMG
+ SRC="melting/img24.png"
+ ALT="$ F=4$">). If <!-- MATH
+ $[A]_0 \gg
+[B]_0$
+ -->
+<IMG
+ALIGN="center" 
+ SRC="melting/img25.png"
+ ALT="$ [A]_0 \gg
+[B]_0$">, then <!-- MATH
+ $C_T \approx [A]_0$
+ -->
+<IMG
+ALIGN="center" 
+ SRC="melting/img26.png"
+ ALT="$ C_T \approx [A]_0$"> and <!-- MATH
+ $K \approx [A]_0 \approx C_T$
+ -->
+<IMG
+ALIGN="center" 
+ SRC="melting/img27.png"
+ ALT="$ K \approx [A]_0 \approx C_T$"> (<IMG
+ SRC="melting/img28.png"
+ ALT="$ F=1$">).
+If the oligonucleotides are self-complementary, <!-- MATH
+ $C_T = [A]_0$
+ -->
+<IMG
+ALIGN="center" 
+ SRC="melting/img29.png"
+ ALT="$ C_T = [A]_0$"> and (<IMG
+ALIGN="center" 
+ SRC="melting/img28.png"
+ ALT="$ F=1$">).
+
+<P>
+Note however that <SMALL>MELTING</SMALL> makes the assumption of no self-assembly,
+<I>i.e.</I>  the computation does not take any entropic term to correct for
+self-complementarity.
+
+<P>
+
+<H2><A NAME="SECTION00056000000000000000">
+5.6 Correction for the concentration of salt </A>
+</H2>  
+If there are only sodium ions in the solution, we can use the following
+corrections.  the correction can be chosen between <I>wet91a,</I> presented in
+Wetmur 1991 <I>i.e.</I>
+<!-- MATH
+ \begin{displaymath}
+\   16.6  \log \frac{[\mathrm{Na}^+]}{1 + 0.7 [\mathrm{Na}^+]} + 3.85
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ SRC="melting/img30.png"
+ ALT="$\displaystyle \ 16.6 \log \frac{[\mathrm{Na}^+]}{1 + 0.7 [\mathrm{Na}^+]} + 3.85
+$">
+</DIV><P></P>
+
+<P>
+<I>san96a</I> presented in SantaLucia et al. 1996 
+<I>i.e.</I>  
+<!-- MATH
+ \begin{displaymath}
+12.5  \log [\mbox{Na}^+]
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ ALIGN="center"
+ SRC="melting/img31.png"
+ ALT="$\displaystyle 12.5 \log [$">Na<IMG
+ ALIGN="center"
+ SRC="melting/img32.png"
+ ALT="$\displaystyle ^+]
+$">
+</DIV><P></P>
+and  <I>san98a</I> presented in SantaLucia 1998 <I>i.e.</I> a correction 
+of the entropic term without modification of enthalpy  
+<!-- MATH
+ \begin{displaymath}
+\   \Delta{}S=\Delta{}S_{[\mathrm{Na}^+]=1\;\mathrm{M}}+0.368 (N-1) \ln [\mathrm{Na}^+]
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ SRC="melting/img33.png"
+ ALT="$\displaystyle \ \Delta{}S=\Delta{}S_{[\mathrm{Na}^+]=1\;\mathrm{M}}+0.368 (N-1) \ln [\mathrm{Na}^+]
+$">
+</DIV><P></P>
+Where <I>N</I> is the length of the duplex (SantaLucia 1998 actually used 'N' the number of non-terminal phosphates, that is effectively equal to our N-1).   
+
+<P>
+
+<P></P>
+<DIV ALIGN="CENTER"><A NAME="259"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3:</STRONG>
+Comparison of experimental and computed Tm for various correction
+of salt concentration.</CAPTION>
+<TR><TD><IMG
+ SRC="melting/salt.png"
+ ALT="\includegraphics[]{salt.eps}"></TD></TR>
+</TABLE>
+</DIV><P></P>
+
+<P>
+
+<H2><A NAME="SECTION00057000000000000000">
+5.7 Correction for the concentration of ions when other monovalent ions such as 
+Tris<sup>+</sup> and K<sup>+</sup> or divalent Mg<sup>2+</sup> ions are added</A>
+</H2>  
+
+If there are only Na+ ions, we can use the correction for the concentration of salt
+(see above). In the opposite case, we will use the magnesium and monovalent ions correction
+from <I>Owczarzy et al (2008)</I>. (only for DNA duplexes)
+       
+       <P></P>
+<DIV ALIGN="CENTER">
+[Mon+] = [Na<sup>+</sup>] + [K<sup>+</sup>] + [Tris<sup>+</sup>]
+</DIV><P></P>
+
+Where [Tris<sup>+</sup>] is equal to half of total tris buffer concentration. <I>(in the option -t, it is the Tris buffer concentration
+which is entered)</I>. <P></P>
+       
+When the divalent ions are the only ions present, the melting temperature is :
+
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ SRC="melting/magnesium1.png" height="300" >
+</DIV>
+<P></P>    
+       where : 
+       <P></P>a = 3.92 x 10<sup>-5</sup>
+       <P></P>b = 9.11 x 10<sup>-6</sup>
+       <P></P>c = 6.26 x 10<sup>-5</sup>
+       <P></P>d = 1.42 x 10<sup>-5</sup>
+       <P></P>e = 4.82 x 10<sup>-4</sup>
+       <P></P>f = 5.25 x 10<sup>-4</sup>
+       <P></P>g = 8.31 x 10<sup>-5</sup>.
+       <P></P>
+       Fgc is the fraction of GC base pairs in the sequence and 
+       Nbp is the length of the sequence (Number of base pairs).
+       <P></P>
+       
+       When there are both monovalent and divalent ions, there are several cases because we can have
+       a competitive DNA binding between monovalent and divalent 
+       cations  :
+       <P></P>
+       
+       If the following ratio :<P></P>
+   <DIV ALIGN="CENTER">       <IMG
+ SRC="melting/ratio.png" height="60" >
+</DIV> <P></P>  
+is inferior to 0.22, monovalent ion influence is dominant, divalent cations can be 
+disregarded and the melting temperature is :
+       
+ <P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ SRC="melting/magnesium2.png" height="200">
+</DIV> <P></P>
+
+<P></P>
+<DIV ALIGN="CENTER"><A NAME="320"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 4:</STRONG>
+Comparison of experimental and computed Tm with the algorithm published in Owczarzy et al.(2008). [Mon+]&nbsp;=&nbsp;0.055&nbsp;M,[Mg2+]&nbsp;=&nbsp;0&nbsp;M, [nucleic acid]&nbsp;=&nbsp;2.10-6&nbsp;M</CAPTION>
+<TR><TD><IMG
+ SRC="melting/Owczarzy2.png" heigth="350"
+ ></TD></TR>
+</TABLE><P></P></DIV>
+        
+       If the ratio is included in [0.22, 6[,
+       we must take in account both Mg<sup>2+</sup> and monovalent cations 
+       concentrations. The melting temperature is calculated with the first equation but with monovalent ions concentration dependent parameters a, d and g :
+	<DIV ALIGN="CENTER">
+ 
+	<P></P>
+	a = 3.92 x 10<sup>-5</sup> x (0.843 - 0.352 x [Mon<sup>+</sup>]0.5 x ln([Mon<sup>+</sup>])) 
+       <P></P>
+       d = 1.42 x 10<sup>-5</sup> x (1.279 - 4.03 x 10<sup>-3</sup> x ln([mon<sup>+</sup>]) - 8.03 x 10<sup>-3</sup> x ln([mon<sup>+</sup>] x ln([mon<sup>+</sup>])
+       <P></P> 
+       g = 8.31 x 10<sup>-5</sup> x (0.486 - 0.258 x ln([mon<sup>+</sup>]) + 5.25 x 10<sup>+</sup> x ln([mon<sup>+</sup>] x ln([mon<sup>+</sup>] x ln([mon<sup>+</sup>])
+       <P></P>.
+       
+       and b, c, e, f are constant.
+       </DIV>
+       
+       <P></P>
+<DIV ALIGN="CENTER"><A NAME="320"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5:</STRONG>
+Comparison of experimental and computed Tm with the algorithm published in Owczarzy et al.(2008). [Mon+]&nbsp;=&nbsp;0.055&nbsp;M,[Mg2+]&nbsp;=&nbsp;0.0015&nbsp;M, [nucleic acid]&nbsp;=&nbsp;2.10-6&nbsp;M</CAPTION>
+<TR><TD><IMG
+ SRC="melting/Owczarzy3.png" heigth="350"
+ ></TD></TR>
+</TABLE><P></P></DIV>
+       
+       Finally, if the ratio is superior to 6,
+       divalent ion influence is dominant, monovalent cations can be disregarded and the melting temperature is calculated with the first equation and the constant parameters a, b, c, d,
+       e, f, g.<P></P>
+
+<DIV ALIGN="CENTER"><A NAME="320"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 6:</STRONG>
+Comparison of experimental and computed Tm with the algorithm published in Owczarzy et al.(2008). [Mon+]&nbsp;=&nbsp;0.001&nbsp;M,[Mg2+]&nbsp;=&nbsp;0.0015&nbsp;M, [nucleic acid]&nbsp;=&nbsp;2.10-6&nbsp;M</CAPTION>
+<TR><TD><IMG
+ SRC="melting/Owczarzy1.png" heigth="350"
+ ></TD></TR>
+</TABLE><P></P></DIV>
+
+<H2><A NAME="SECTION00058000000000000000">
+5.8 Long sequences </A>
+</H2>  
+ It is important to realise that the nearest-neighbor approach 
+has been established  on small oligonucleotides. Therefore the use of <SMALL>MELTING</SMALL> 
+in the non-approximative  mode is really accurate only for relatively short 
+sequences (Although if the sequences are two short, let's say &lt; 6&nbsp;bp, the 
+influence of extremities becomes too important and the  reliability decreases 
+a lot). For long sequences an approximative mode has been designed. This mode is 
+launched if the sequence length is higher than the value 
+given by the option -T (the default threshold is 60 bp).
+
+<P>
+The melting temperature is computed by the following formulas:   
+
+<P>
+<SMALL>ADN/ADN</SMALL>:
+<!-- MATH
+ \begin{displaymath}
+Tm = 81.5 + 16.6\log\frac{[\mathrm{Na}^+]}{1+0.7[\mathrm{Na}^+]} + 0.41\% GC - \frac{500}{size}
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ SRC="melting/img34.png"
+ ALT="Tm = 81.5 + 16.6\log\frac{[\mathrm{Na}^+]}{1+0.7[\mathrm{Na}^+]} + 0.41\% GC - \frac{500}{size}">
+</DIV><P></P>
+<SMALL>ADN/ARN</SMALL>:
+<!-- MATH
+ \begin{displaymath}
+Tm = 67 + 16.6\log\frac{[\mathrm{Na}^+]}{1+0.7[\mathrm{Na}^+]} + 0.8\% GC - \frac{500}{size}
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ SRC="melting/img35.png"
+ ALT="Tm = 67 + 16.6\log\frac{[\mathrm{Na}^+]}{1+0.7[\mathrm{Na}^+]} + 0.8\% GC - \frac{500}{size}">
+</DIV><P></P>
+<SMALL>ARN/ARN</SMALL>:
+<!-- MATH
+ \begin{displaymath}
+Tm = 78 + 16.6\log\frac{[\mathrm{Na}^+]}{1+0.7[\mathrm{Na}^+]} + 0.7\% GC - \frac{500}{size}
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ SRC="melting/img36.png"
+ ALT="Tm = 78 + 16.6\log\frac{[\mathrm{Na}^+]}{1+0.7[\mathrm{Na}^+]} + 0.7\% GC - \frac{500}{size}">
+
+</DIV><P></P>
+
+<P>
+The usage of this mode is nevertheless  <B>strongly disencouraged.</B>   
+
+<P>
+
+<H2><A NAME="SECTION00059000000000000000">
+5.9 Miscellaneous comments </A>
+</H2>  
+<SMALL>MELTING</SMALL> is currently accurate only when the hybridisation is performed
+at pH 71.  The computation is valid only for the hybridisations performed
+in aqueous medium. Therefore the use of denaturing agents such as formamide
+completely invalidates the results.
+
+<P>
+
+<H1><A NAME="SECTION00060000000000000000">
+6 References </A>
+</H1>
+Allawi 
+H.T., SantaLucia J. (1997). Thermodynamics and NMR of internal G-T mismatches 
+in DNA. <I>Biochemistry</I>  36: 10581-10594  
+ 
+<P>
+Allawi H.T., SantaLucia J. (1998). 
+Nearest Neighbor thermodynamics parameters for internal G.A mismatches in DNA. 
+<I> Biochemistry </I>
+37: 2170-2179
+
+<P>
+Allawi H.T., SantaLucia J. (1998). 
+Thermodynamics of internal C.T mismatches in DNA.
+<I> Nucleic Acids Res </I>
+26: 2694-2701
+
+<P>
+Allawi H.T., SantaLucia J. (1998). 
+Nearest Neighbor thermodynamics of internal A.C mismatches in DNA: sequence 
+dependence and pH effects.
+<I> Biochemistry </I>
+37: 9435-9444.
+
+<P>
+Bommarito S., Peyret N., SantaLucia J. (2000).  Thermodynamic parameters for DNA
+sequences with dangling ends.  <I>Nucleic Acids Res</I> 28: 1929-1934
+
+<P>
+Breslauer K.J., Frank R., Bl&#246;cker 
+H., Marky L.A. (1986). Predicting DNA duplex stability from the base sequence. 
+ <I>Proc Natl Acad Sci USA</I>  83: 3746-3750   
+
+<P>
+Freier S.M., Kierzek R., Jaeger 
+J.A., Sugimoto N., Caruthers M.H., Neilson T., Turner D.H. (1986). <I>Biochemistry</I> 
+ 83:9373-9377   
+ 
+ <P> 
+ Owczarzy R., Moreira B.G., You Y., Behlke M.B., Walder J.A.(2008) Predicting stability of DNA duplexes 
+ in solutions containing Magnesium and Monovalent Cations. <I>Biochemistry</I> 47: 5336-5353.  
+
+<P> 
+Peyret N., Seneviratne P.A., Allawi H.T., SantaLucia J. (1999). 
+Nearest Neighbor thermodynamics and NMR of DNA sequences with internal 
+A.A, C.C, G.G and T.T mismatches. 
+dependence and pH effects.
+<I> Biochemistry </I>
+38: 3468-3477
+
+<P>
+SantaLucia J. Jr, Allawi H.T., Seneviratne P.A. (1996). Improved 
+nearest-neighbor parameters for predicting DNA duplex stability. <I>Biochemistry</I> 
+35: 3555-3562   
+
+<P>
+Sugimoto N., Katoh M., Nakano S., Ohmichi T., Sasaki M. (1994). 
+RNA/DNA hybrid duplexes with identical nearest-neighbor base-pairs hve identical 
+stability. <I>FEBS Letters</I> 354: 74-78   
+
+<P>
+Sugimoto N., Nakano S., Katoh M., Matsumura 
+A., Nakamuta H., Ohmichi T., Yoneyama M., Sasaki M. (1995). Thermodynamic parameters 
+to predict stability of RNA/DNA hybrid duplexes. <I>Biochemistry</I> 34: 11211-11216 
+
+<P>
+Sugimoto N., Nakano S., Yoneyama M., Honda K. (1996).  Improved thermodynamic 
+parameters and helix initiation factor to predict stability of DNA duplexes. 
+<I>Nuc Acids Res</I>  24: 4501-4505   
+
+<P>
+Watkins N.E., Santalucia J. Jr. (2005). Nearest-neighbor thermodynamics of deoxyinosine 
+pairs in DNA duplexes. <I>Nucleic Acids Research</I> 33: 6258-6267
+
+<P>
+Wright D.J., Rice J.L., Yanker D.M., Znosko B.M. (2007). Nearest neighbor parameters for 
+inosine-uridine pairs in RNA duplexes. <I>Biochemistry</I> 46: 4625-4634 
+
+<P>
+Xia T., SantaLucia J., Burkard M.E., Kierzek 
+R., Schroeder S.J., Jiao X., Cox C., Turner D.H. (1998). Thermodynamics parameters 
+for an expanded nearest-neighbor model for formation of RNA duplexes with 
+Watson-Crick base pairs. <I>Biochemistry</I>  37: 14719-14735   
+
+<P>
+For review see: 
+
+<P>
+SantaLucia J. (1998) A unified view of polymer, dumbbell, and oligonucleotide 
+DNA nearest-neighbor thermodynamics. <I>Proc Natl Acad Sci USA</I>  95: 1460-1465
+
+<P>
+SantaLucia  J., Hicks Donald (2004) The Thermodynamics of DNA structural motifs. 
+<I>Annu. Rev. Biophys. Struct.</I> 33: 415-440 
+
+<P>
+Wetmur J.G. (1991) DNA probes: applications of the principles of nucleic 
+acid hybridization. <I>Crit Rev Biochem Mol Biol</I> 26: 227-259   
+
+<P>
+
+<H1><A NAME="SECTION00070000000000000000">
+7 Files </A>
+</H1>
+<DL COMPACT>
+<DT><I>*.nn</I></DT>
+<DD>Files containing the nearest-neighbor parameters, enthalpy and entropy, 
+for each Crick's pair.  They have to be placed in a directory defined during 
+the compilation or targeted by the  environment variable NN_PATH.  
+</DD>
+<DT><I>tkmelting.pl</I></DT>
+<DD>A Graphical User Interface written in perl/tk is available for users
+who prefer  the 'button and menu' approach.  
+</DD>
+<DT><I>*.pl</I></DT>
+<DD>Scripts are available to 
+use <SMALL>MELTING</SMALL> iteratively. For instance, the script multi.pl permits to predict 
+the Tm of several duplexes in one shot. The script profil.pl allow
+an interactive computation along a sequence, by sliding a window of specified width. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H1><A NAME="SECTION00080000000000000000">
+8 See Also </A>
+</H1>
+New versions and 
+related material can be found at <TT><A NAME="tex2html4"
+  HREF="http://www.ebi.ac.uk/~lenov/meltinghome.html">http://www.ebi.ac.uk/~lenov/meltinghome.html</A></TT> 
+  and at <TT><A HREF= "https://sourceforge.net/projects/melting/">https://sourceforge.net/projects/melting/</A></TT>
+
+<P>
+You can use <SMALL>MELTING</SMALL> through a web server at <TT><A NAME="tex2html5"
+  HREF="http://bioweb.pasteur.fr/seqana
+l/interfaces/melting.html">http://bioweb.pasteur.fr/seqana
+l/interfaces/melting.html</A></TT>
+<P>
+
+<H1><A NAME="SECTION00090000000000000000">
+9 Known Bugs </A>
+</H1>
+The infiles have to be ended by a blank line because otherwise the last line is not decoded.
+
+<P>
+If an infile is called, containing the 
+address of another input file, it does not care of this latter.  If it 
+is its own address, the program quit (is it a bug or a feature?).   
+
+<P>
+In interactive mode, a sequence can be entered on several lines with a backslash
+<BR><TT>AGCGACGAGCTAGCCTA&#92;
+<BR>
+AGGACCTATACGAC</TT>
+<BR>
+If by mistake it is entered as  
+<BR><TT>AGCGACGAGCTAGCCTA&#92;AGGACCTATACGAC</TT>
+
+<P>
+The backslash will be considered 
+ as an illegal character. Here again, I do not think it is actually a bug 
+(even if it is unlikely, there is a small probability that the  backslash 
+could actually be a mistyped base).   
+
+<P>
+
+<H1><A NAME="SECTION000100000000000000000">
+10 Copyright </A>
+</H1>
+Melting is copyright 
+&#169;1997, 2013 by Nicolas Le Nov&#232;re and Marine Dumousseau   
+
+<P>
+This program is free software; 
+you can redistribute it and/or modify it under the terms of the GNU General 
+Public License as published by the Free Software Foundation; either version 
+2 of the License, or (at your option) any later version.   
+  This program 
+is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+PARTICULAR PURPOSE.  See the GNU General Public License for more details. 
+
+<P>
+You should have received a copy of the GNU General Public License 
+along with this program; if not, write to the Free Software Foundation, 
+Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA   
+
+<P>
+
+<H1><A NAME="SECTION000110000000000000000">
+11 Acknowledgements</A>
+</H1>
+Nicolas Joly is an efficient and kind debugger and advisor.  Catherine
+Letondal wrote the HTML interface to melting. Thanks to Nirav Merchant,
+Taejoon Kwon, Leo Schalkwyk, Mauro Petrillo, Andrew Thompson, Wong Chee Hong, Ivano
+Zara for their bug fixes and comments.  Thanks to Richard Owczarzy for his
+magnesium correction. Thanks to Charles Plessy for the graphical interface files. Markus Piotrowski 
+updated TkMELTING to cover version 4.3. Finally thanks to the usenet helpers, particularly Olivier Dehon and Nicolas Chuche.
+
+
+<P>
+
+<H1><A NAME="SECTION000120000000000000000">
+12 Authors </A>
+</H1>
+Nicolas Le Nov&#232;re
+<BR>
+Babraham Institute 
+<BR>
+Babraham Research Campus
+<BR>
+Babraham CB22 3AT Cambridge UK
+<BR>
+n.lenovere@gmail.com
+<BR>
+<BR>
+
+Marine Dumousseau, 
+<BR>
+EMBL-EBI, 
+<BR>
+Wellcome-Trust Genome Campus
+<BR>
+Hinxton Cambridge, CB10 1SD, UK
+<BR>
+marine@ebi.ac.uk
+<BR>
+
+<P>
+
+<H1><A NAME="SECTION000130000000000000000">
+13 History </A>
+</H1>
+<P>
+See the file ChangeLog for the changes of the versions 4 and more recent.
+
+</BODY>
+</HTML>

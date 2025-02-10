@@ -1,0 +1,56 @@
+/******************************************************************************/
+/*                                   san96a.nn                                */
+/* contains the parameters for DNA/DNA hybridisation of SantaLucia et al.     */
+/* (1996). Biochemistry 35 : 3555-3562                                        */
+/******************************************************************************/
+
+/*      This program is free software; you can redistribute it and/or modify  */
+/*       it under the terms of the GNU General Public License as published by */
+/*       the Free Software Foundation; either version 2 of the License, or    */
+/*       (at your option) any later version.                                  */
+
+/*       This program is distributed in the hope that it will be useful, but  */
+/*       WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
+/*       General Public License for more details.                             */
+
+/*       You should have received a copy of the GNU General Public License    */
+/*       along with this program; if not, write to the Free Software          */
+/*       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 */
+/*       USA                                                                  */
+
+/*       Nicolas Le Novère  and Marine Dumousseau                             */
+/*       EMBL-EBI, Wellcome-Trust Genome Campus                               */
+/*       Hinxton Cambridge, CB10 1SD, UK                                      */
+/*      lenov@ebi.ac.uk                                                       */
+/*  IMPORTANT: the parameters appearing in litterature (and therefore in this */
+/*             file) are expressed in cal.mol-1, whereas the results output   */
+/*             by MELTING are in SI, i.e. in J.mol-1                          */
+
+AA  -8400.0  -23.6
+AC  -8600.0  -23.0
+AG  -6100.0  -16.1
+AT  -6500.0  -18.8
+CA  -7400.0  -19.3
+CC  -6700.0  -15.6
+CG -10100.0  -25.5
+CT  -6100.0  -16.1
+GA  -7700.0  -20.3
+GC -11100.0  -28.4
+GG  -6700.0  -15.6
+GT  -8600.0  -23.0
+TA  -6300.0  -18.5
+TC  -7700.0  -20.3
+TG  -7400.0  -19.3
+TT  -8400.0  -23.6
+IA      0.0   -2.95
+IG      0.0   -2.95
+
+/* IMPORTANT: In the case of a duplex without GC, the IA initiation entropy   */
+/*            would better be -9.0 cal.mol-1. There is currently no way to    */
+/*            correct that in MELTING. However, since it is not a common case */
+/*            we suggest to choose another set of nn parameters in this       */
+/*            situation (by the way other sets are known to be better).       */
+
+REF: SantaLucia et al. (1996). Biochemistry 35 : 3555-3562
+

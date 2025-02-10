@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type="text/xsl"
+	href="http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+	"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+
+<!-- Process this file with an XSLT processor, e.g. xsltproc:    -->
+<!-- `xsltproc \
+      -''-nonet \
+      -''-param man.charmap.use.subset "0" \
+      -''-param make.year.ranges "1" \
+      -''-param make.single.year.ranges "1" \
+      manpage.xml'                                               -->
+
+  <!ENTITY dhfirstname "Charles">
+  <!ENTITY dhsurname   "Plessy">
+  <!ENTITY dhemail     "plessy@debian.org">
+  <!ENTITY dhusername  "&dhfirstname; &dhsurname;">
+  <!ENTITY dhrelease   "0.005">
+  <!ENTITY dhtitle     "Melting Manual">
+  <!ENTITY dhucpackage "TKMELTING">
+  <!ENTITY dhpackage   "tkmelting">
+  <!ENTITY dhproduct   "Melting">
+  <!ENTITY dhsection   "1">
+
+]>
+
+<refentry>
+	<refentryinfo>
+		<title>&dhtitle;</title>
+		<productname>&dhpackage;</productname>
+		<releaseinfo role="version">&dhrelease;</releaseinfo>
+		<authorgroup>
+			<author>
+				<firstname>Nicolas</firstname>
+				<surname>Le Novère</surname>
+				<contrib>Wrote tkmelting</contrib>
+        <address>
+          <affiliation>
+            <orgname>EMBL-EBI</orgname>
+          </affiliation>
+          <street>Wellcome-Trust Genome Campus Hinxton</street>
+          <city>Cambridge</city>
+          <postcode>CB10 1SD</postcode>
+          <country>UK</country>
+					<email>lenov@ebi.ac.uk</email>
+				</address>
+			</author>
+			
+			<author>
+				<firstname>Marine</firstname>
+				<surname>Dumousseau</surname>
+				<contrib>Wrote tkmelting</contrib>
+				<address>
+					<affiliation>
+					<orgname>EMBL-EBI</orgname>
+					</affiliation>
+					<street>Wellcome-Trust Genome Campus Hinxton</street>
+					<city>Cambridge</city>
+					<postcode>CB10 1SD</postcode>
+					<country>UK</country>
+					<email>(marine@ebi.ac.uk</email>
+				</address>
+			</author>
+			
+			<author>
+				<firstname>&dhfirstname;</firstname>
+				<surname>&dhsurname;</surname>
+				<contrib>Wrote and this manpage in DocBook XML for the Debian distribution.</contrib>
+				<address>
+					<email>&dhemail;</email>
+				</address>
+			</author>
+		</authorgroup>
+		<copyright>
+			<year>1996</year>
+			<year>1997</year>
+			<year>1998</year>
+			<year>1999</year>
+			<year>2000</year>
+			<year>2001</year>
+			<year>2002</year>
+			<year>2003</year>
+      <year>2004</year>
+			<year>2005</year>
+			<year>2006</year>
+			<year>2007</year>
+			<year>2008</year>
+			<year>2009</year>
+			<holder>Nicolas le Novère</holder>
+			<holder>Marine Dumousseau</holder>
+		</copyright>
+		<copyright>
+			<year>2007</year>
+			<year>2009</year>
+			<holder>&dhusername;</holder>
+		</copyright>
+		<legalnotice>
+			<para>
+        Tkmelting is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published  by  the Free  Software Foundation; either version 2 of the License, or (at your option) any later version.
+      </para>
+      
+      <para>
+        Tkmelting is distributed in the hope that it  will  be  useful,  but WITHOUT  ANY  WARRANTY;  without  even  the  implied  warranty  of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU  General Public License for more details.
+      </para>
+      
+      <para>
+        You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
+      </para>
+      
+      <para>
+        On Debian systems, you can find a copy of the GNU General Public License version 2 in <filename>/usr/share/common-licences/GPL-2</filename>. The manpage of tkmelting can be used under the same terms as tkmelting itself.
+      </para>
+		</legalnotice>
+	</refentryinfo>
+  
+	<refmeta>
+		<refentrytitle>&dhucpackage;</refentrytitle>
+		<manvolnum>&dhsection;</manvolnum>
+	</refmeta>
+  
+	<refnamediv>
+		<refname>&dhpackage;</refname>
+		<refpurpose>Tk interface to MELTING</refpurpose>
+	</refnamediv>
+  
+	<refsynopsisdiv>
+		<cmdsynopsis>
+			<command>&dhpackage;</command>
+		</cmdsynopsis>
+	</refsynopsisdiv>
+	<refsect1 id="description">
+		<title>DESCRIPTION</title>
+		<para><command>&dhpackage;</command> starts a graphical user interface to MELTING, a program to calculate for a DNA/DNA, DNA/RNA, and RNA/RNA duplex, the enthalpy, the entropy of the helix-coil transition, and then its melting temperature.</para>
+	</refsect1>
+  
+  <refsect1>
+		<title>SEE ALSO</title>
+		<para><citerefentry>
+				<refentrytitle>melting</refentrytitle>
+				<manvolnum>1</manvolnum>
+			</citerefentry>
+    </para>
+	</refsect1>
+</refentry>

@@ -1,0 +1,50 @@
+/******************************************************************************/
+/*                                   bre86a.nn                                */
+/* contains the parameters for DNA/DNA hybridisation of Breslauer et al.      */
+/* (1986). Proc Natl Acad Sci USA 83 : 3746-3750                              */
+/******************************************************************************/
+
+/*      This program is free software; you can redistribute it and/or modify  */
+/*       it under the terms of the GNU General Public License as published by */
+/*       the Free Software Foundation; either version 2 of the License, or    */
+/*       (at your option) any later version.                                  */
+
+/*       This program is distributed in the hope that it will be useful, but  */
+/*       WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
+/*       General Public License for more details.                             */
+
+/*       You should have received a copy of the GNU General Public License    */
+/*       along with this program; if not, write to the Free Software          */
+/*       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 */
+/*       USA                                                                  */
+
+/*       Nicolas Le Novère  and Marine Dumousseau                             */
+/*       EMBL-EBI, Wellcome-Trust Genome Campus                               */
+/*       Hinxton Cambridge, CB10 1SD, UK                                      */
+/*      lenov@ebi.ac.uk                                                       */
+/*  IMPORTANT: the parameters appearing in litterature (and therefore in this */
+/*             file) are expressed in cal.mol-1, whereas the results output   */
+/*             by MELTING are in SI, i.e. in J.mol-1                          */
+
+AA  -9100.0  -24.0
+AC  -6500.0  -17.3 
+AG  -7800.0  -20.8 
+AT  -8600.0  -23.9 
+CA  -5800.0  -12.9
+CC -11000.0  -26.6 
+CG -11900.0  -27.8
+CT  -7800.0  -20.8
+GA  -5600.0  -13.5 
+GC -11100.0  -26.7
+GG -11000.0  -26.6
+GT  -6500.0  -17.3
+TA  -6000.0  -16.9
+TC  -5600.0  -13.5 
+TG  -5800.0  -12.9 
+TT  -9100.0  -24.0
+IA      0.0    0.0
+IG      0.0    0.0
+
+REF: Breslauer et al. (1986). Proc Natl Acad Sci USA 83 : 3746-3750
+

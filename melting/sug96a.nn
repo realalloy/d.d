@@ -1,0 +1,50 @@
+/******************************************************************************/
+/*                                   sug96a.nn                                */
+/* contains the parameters for DNA/DNA hybridisation of Sugimoto et al.       */
+/* (1996). Nuc Acids Res 24 : 4501-4505                                       */
+/******************************************************************************/
+
+/*      This program is free software; you can redistribute it and/or modify  */
+/*       it under the terms of the GNU General Public License as published by */
+/*       the Free Software Foundation; either version 2 of the License, or    */
+/*       (at your option) any later version.                                  */
+
+/*       This program is distributed in the hope that it will be useful, but  */
+/*       WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
+/*       General Public License for more details.                             */
+
+/*       You should have received a copy of the GNU General Public License    */
+/*       along with this program; if not, write to the Free Software          */
+/*       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 */
+/*       USA                                                                  */
+
+/*       Nicolas Le Novère  and Marine Dumousseau                             */
+/*       EMBL-EBI, Wellcome-Trust Genome Campus                               */
+/*       Hinxton Cambridge, CB10 1SD, UK                                      */
+/*      lenov@ebi.ac.uk                                                       */
+/*  IMPORTANT: the parameters appearing in litterature (and therefore in this */
+/*             file) are expressed in cal.mol-1, whereas the results output   */
+/*             by MELTING are in SI, i.e. in J.mol-1                          */
+
+AA  -8000.0  -21.9
+AC  -9400.0  -25.5
+AG  -6600.0  -16.4
+AT  -5600.0  -15.2
+CA  -8200.0  -21.0
+CC -10900.0  -28.4
+CG -11800.0  -29.0
+CT  -6600.0  -16.4
+GA  -8800.0  -23.5
+GC -10500.0  -26.4
+GG -10900.0  -28.4
+GT  -9400.0  -25.5
+TA  -6600.0  -18.4
+TC  -8800.0  -23.5
+TG  -8200.0  -21.0
+TT  -8000.0  -21.9
+IA    300.0   -4.5
+IG    300.0   -4.5
+
+REF: Sugimoto et al. (1996). Nuc Acids Res 24 : 4501-4505
+

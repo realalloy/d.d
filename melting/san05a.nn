@@ -1,0 +1,142 @@
+/******************************************************************************/
+/*                                   san05a.nn                                */
+/* contains the parameters for inosine mismatch in DNA of Santalucia et al.   */
+/* (2005). Nucleic acids research 33 : 6258-6267                              */
+/******************************************************************************/
+
+/*      This program is free software; you can redistribute it and/or modify  */
+/*       it under the terms of the GNU General Public License as published by */
+/*       the Free Software Foundation; either version 2 of the License, or    */
+/*       (at your option) any later version.                                  */
+
+/*       This program is distributed in the hope that it will be useful, but  */
+/*       WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
+/*       General Public License for more details.                             */
+
+/*       You should have received a copy of the GNU General Public License    */
+/*       along with this program; if not, write to the Free Software          */
+/*       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 */
+/*       USA                                                                  */
+
+/*       Nicolas Le Novère  and Marine Dumousseau                             */
+/*       EMBL-EBI, Wellcome-Trust Genome Campus                               */
+/*       Hinxton Cambridge, CB10 1SD, UK                                      */
+/*      lenov@ebi.ac.uk                                                       */
+/*  IMPORTANT: the parameters appearing in litterature (and therefore in this */
+/*             file) are expressed in cal.mol-1, whereas the results output   */
+/*             by MELTING are in SI, i.e. in J.mol-1                          */
+
+AI/TC  -8900.0  -25.5
+AI/TA  -8300.0  -25.0
+AI/TT    490.0   -0.7
+AI/TG  -4900.0  -15.8
+AI/TI  -3300.0  -11.9
+AI/IA  -9500.0  -29.1
+AI/II  99999 99999
+TI/AC  -5900.0  -17.4
+TI/AA  -3400.0  -11.2
+TI/AT  -6500.0  -22.0
+TI/AG  -1900.0   -8.5
+TI/AI    100.0   -2.3
+TI/IT -14700.0  -49.4
+TI/II  99999 99999
+CI/GC  -5400.0  -13.7
+CI/GA   2600.0    8.9
+CI/GT  -1000.0   -2.4
+CI/GG   7100.0   21.3
+CI/GI   1300.0    3.0
+CI/IC  -1800.0   -6.4
+CI/II  99999 99999
+GI/CC  -6800.0  -19.1
+GI/CA  -7800.0  -21.1
+GI/CT  -3500.0  -10.6
+GI/CG  -1100.0   -3.2
+GI/IG  -4200.0  -39.8
+GI/CI   -500.0   -1.3
+GI/II  99999 99999
+IA/CT  -4900.0  -13.9
+IA/AT  -1300.0   -4.6
+IA/TT   -800.0   -4.3
+IA/GT   1000.0    1.0
+IA/AI -13900.0  -40.5
+IA/IT    100.0   -2.3
+IA/II  99999 99999
+IT/CA  -8800.0  -25.4
+IT/AA   -700.0   -2.6
+IT/TA  -6000.0  -18.7
+IT/GA    100.0   -1.8
+IT/IA  -3300.0  -11.9
+IT/TI  -7600.0  -31.1
+IT/II  99999 99999
+IG/CC  -8300.0  -23.8
+IG/AC  -7000.0  -20.0
+IG/TC    100.0   -1.0
+IG/GC   5800.0   16.9
+IG/GI   3200.0    6.1
+IG/IC   1300.0    3.0
+IG/II  99999 99999
+IC/CG  -5000.0  -12.6
+IC/AG  -7600.0  -20.2
+IC/TG  -4300.0  -12.1
+IC/GG  -7600.0  -22.0
+IC/CI -12100.0  -36.3
+IC/IG   -500.0   -1.3
+IC/II  99999 99999
+CT/IA  -8900.0  -25.5
+AT/IA  -8300.0  -25.0
+TT/IA    490.0   -0.7
+GT/IA  -4900.0  -15.8
+IT/IA  -3300.0  -11.9
+II/IA  99999 99999
+CA/IT  -5900.0  -17.4
+AA/IT  -3400.0  -11.2
+TA/IT  -6500.0  -22.0
+GA/IT  -1900.0   -8.5
+IA/IT    100.0   -2.3
+II/IT  99999 99999
+CG/IC  -5400.0  -13.7
+AG/IC   2600.0    8.9
+TG/IC  -1000.0   -2.4
+GG/IC   7100.0   21.3
+IG/IC   1300.0    3.0
+II/IC  99999 99999
+CC/IG  -6800.0  -19.1
+AC/IG  -7800.0  -21.1
+TC/IG  -3500.0  -10.6
+GC/IG  -1100.0   -3.2
+IC/IG   -500.0   -1.3
+II/IG  99999 99999
+TC/AI  -4900.0  -13.9
+TA/AI  -1300.0   -4.6
+TT/AI   -800.0   -4.3
+TG/AI   1000.0    1.0
+II/AI  99999 99999
+AC/TI  -8800.0  -25.4
+AA/TI   -700.0   -2.6
+AT/TI  -6000.0  -18.7
+AG/TI    100.0   -1.8
+II/TI  99999 99999
+CC/GI  -8300.0  -23.8
+CA/GI  -7000.0  -20.0
+CT/GI    100.0   -1.0
+CG/GI   5800.0   16.9
+II/GI  99999 99999
+GC/CI  -5000.0  -12.6
+GA/CI  -7600.0  -20.2
+GT/CI  -4300.0  -12.1
+GG/CI  -7600.0  -22.0
+II/CI  99999 99999
+II/AA  99999 99999
+II/GG  99999 99999
+II/CC  99999 99999
+II/TT  99999 99999
+AA/II  99999 99999
+GG/II  99999 99999
+CC/II  99999 99999
+TT/II  99999 99999
+II/II  99999 99999
+
+
+REF: Santalucia et al (2005) Nucleic acids research 33 : 6258-6267
+                    
